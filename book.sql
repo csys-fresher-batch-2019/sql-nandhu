@@ -18,14 +18,12 @@ b_id number not null,
 ordered_date timestamp not null,
 delivered_date timestamp,
 amount number not null,
-
 status varchar2(100),
 comments varchar2(100),
 constraint order_id_pk primary key(order_id),
 constraint b_id_fk foreign key(b_id) references book(b_id),
 constraint book_date_uq unique(u_name,b_id,ordered_date),
 constraint amount_ck check(amount>=0),
-
 constraint status_ck check(status in ('ordered','not available','delivered','canceled')) 
 );
 
