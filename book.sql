@@ -49,3 +49,12 @@ select * from book;
 
 
 select * from orders;
+                           
+
+insert into orders(order_id,u_name,b_id,ordered_date,delivered_date,amount,qty,status,comments)
+values(3,'riya',1,timestamp '2020-01-01 21:22:23',timestamp '2020-01-04 21:22:23',2000,1,'delivered','abcd');
+                           
+
+
+select count(delivered_date) as sales_count from orders where status='delivered';
+                     
