@@ -18,14 +18,14 @@ b_id number not null,
 ordered_date timestamp not null,
 delivered_date timestamp,
 amount number not null,
-qty number default 1,
+
 status varchar2(100),
 comments varchar2(100),
 constraint order_id_pk primary key(order_id),
 constraint b_id_fk foreign key(b_id) references book(b_id),
 constraint book_date_uq unique(u_name,b_id,ordered_date),
 constraint amount_ck check(amount>=0),
-constraint qty_ck check(qty>=1),
+
 constraint status_ck check(status in ('ordered','not available','delivered','canceled')) 
 );
 
@@ -58,3 +58,55 @@ values(3,'riya',1,timestamp '2020-01-01 21:22:23',timestamp '2020-01-04 21:22:23
 
 select count(delivered_date) as sales_count from orders where status='delivered';
                      
+create table order_item(item_id number,
+order_id number,
+bo_id number,
+qty number default 1,
+sts varchar2(50),
+constraint qty_ck check(qty>=1),
+constraint item_id_pk primary key(item_id), 
+constraint order_id_fk foreign key(order_id)references orders(order_id),
+constraint bo_id_fk foreign key(bo_id)references book(b_id)
+);        
+
+
+create table stocks(st_id number,
+book_id number,
+qnty number,
+constraint st_id_pk primary key(st_id),
+constraint book_id_fk foreign key(book_id)references book(b_id)
+);
+
+
+insert into order_item(item_id,order_id,bo_id,qty,sts)
+values(101,1,1,3,'ordered');
+
+insert into order_item(item_id,order_id,bo_id,qty,sts)
+values(102,2,2,4,'ordered');
+
+select * from order_item;
+
+insert into stocks(st_id,book_id,qnty)
+values(1001,1,10);
+insert into stocks(st_id,book_id,qnty)
+values(1002,2,3);
+                     
+select * from stocks;
+                           
+select b_name,
+(select sum(qty) from order_item where bo_id=b.b_id)as total_count
+from book b;
+                           
+select b_name,
+(select sum(qnty) from stocks where book_id=b.b_id)as total_count
+from book b;
+                           
+select b_name,
+(
+(select sum(qnty) from stocks where book_id=b.b_id)-
+(select sum(qty) from order_item where bo_id=b.b_id)
+)as available_count
+from book b;                   
+                   
+                   
+                   
