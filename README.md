@@ -7,7 +7,7 @@ http://matrimony.in
 * Viewing the details of the bride, bridegroom.
 
 ### Feature 1: List all bride/bridegroom 
-
+'''sql
 create table profiles
 (
 user_id number,
@@ -23,7 +23,7 @@ education varchar2(30),
 constraint user_id_pk primary key(user_id),
 constraint gender_cq check(gender in ('M','F'))
 );
-
+'''
 *Query
 
 
