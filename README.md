@@ -12,7 +12,7 @@ create table profiles
 (
 user_id number,
 user_name varchar2(50) not null,
-age number not null,
+d_o_b date not null,
 gender char(1)not null,
 religion varchar2(50)not null,
 caste varchar2(50),
@@ -21,7 +21,6 @@ mob_no number not null,
 height number ,
 education varchar2(30),
 constraint user_id_pk primary key(user_id),
-constraint age_cq check(age>=18),
 constraint gender_cq check(gender in ('M','F'))
 );
 ```
