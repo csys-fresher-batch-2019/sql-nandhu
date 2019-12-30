@@ -6,7 +6,7 @@ http://matrimony.in
 
 * Viewing the details of the bride, bridegroom.
 
-### Feature 1: List all bride/bridegroom 
+### Feature 1: List of all bride/bridegroom 
 ```sql
 create table profiles
 (
