@@ -21,6 +21,7 @@ mob_no number not null,
 height number ,
 education varchar2(30),
 constraint user_id_pk primary key(user_id),
+constraint age_cq check(age>=18),
 constraint gender_cq check(gender in ('M','F'))
 );
 ```
