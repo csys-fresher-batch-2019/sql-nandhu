@@ -13,7 +13,7 @@ create table profiles
 user_id number,
 user_name varchar2(50) not null,
 age number not null,
-gender char(1),
+gender char(1)not null,
 religion varchar2(50)not null,
 caste varchar2(50),
 country varchar2(50)not null,
