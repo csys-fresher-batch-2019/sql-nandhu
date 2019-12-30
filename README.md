@@ -27,12 +27,12 @@ constraint gender_cq check(gender in ('M','F'))
 *Query
 ```sql
 
-insert into profiles(user_id,user_name,age,gender,religion,caste,country,mob_no,height,education)
-values(101,'Shyloo',26,'F','aaa','bbb','India',9876543211,5.5,'BE(CSE)');
+insert into profiles(user_id,user_name,d_o_b,gender,religion,caste,country,mob_no,height,education)
+values(101,'Shyloo',to_date('20-11-1994','dd-MM-yyyy'),'F','aaa','bbb','India',9876543211,5.5,'BE(CSE)');
 
 
-insert into profiles(user_id,user_name,age,gender,religion,caste,country,mob_no,height,education)
-values(102,'Surya',28,'M','bbb','ccc','Australia',8763452983,5.9,'BSC(CS)');
+insert into profiles(user_id,user_name,d_o_b,gender,religion,caste,country,mob_no,height,education)
+values(102,'Surya',to_date('28-12-1992','dd-MM-yyyy'),'M','bbb','ccc','Australia',8763452983,5.9,'BSC(CS)');
 
 select * from profiles;
 ```
