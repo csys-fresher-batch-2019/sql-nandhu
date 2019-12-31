@@ -43,7 +43,7 @@ values(104,'charan',to_date('22-02-1993','dd-MM-yyyy'),'M','bbb','ccc','India',8
 select * from profiles;
 
 ```
-* alter query
+* alter profiles
 ```sql
 alter table profiles add(
 registerd_date date default sysdate);
@@ -80,15 +80,25 @@ select * from plan;
 ### Feature 3: Display the membership_duration details 
 
 ```sql
-create table membersip_duration(
+create table membership_duration(
 member_id number,
-user_duration_id number,
-plan_id number,
-expiry_date date not null,
+md_user_id number,
+md_plan_id number,
+expiry_date date,
 constraint member_id_pk primary key(member_id),
-constraint user_duration_id_fk foreign key(user_duration_id)references profiles(user_id),
-constraint plan_id_fk foreign key(plan_id)references plan(plan_id)
+constraint md_user_id_fk foreign key(md_user_id)references profiles(user_id),
+constraint md_plan_id_fk foreign key(md_plan_id)references plan(plan_id)
 );
+```
+* query
+```sql
+insert into membership_duration
+(member_id,md_user_id,md_plan_id)
+values(1001,101,1);
+
+update  membership_duration set expiry_date=add_months((select registerd_date from profiles where user_id=101),12);
+
+
 ```
 ### Feature 3: Display the user_request_status details 
 
