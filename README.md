@@ -37,13 +37,6 @@ values(102,'Surya',to_date('28-12-1992','dd-MM-yyyy'),'M','bbb','ccc','Australia
 
 select * from profiles;
 
-* TABLE DESIGN
-
-| USER_ID | USER_NAME | D_O_B     | GENDER | RELIGION | CASTE | COUNTRY   | MOB_NO     | HEIGHT | EDUCATION | REGISTERD_DATE |
-|---------|-----------|-----------|--------|----------|-------|-----------|------------|--------|-----------|----------------|
-| 101     | Shyloo    | 20-NOV-94 | F      | aaa      | bbb   | India     | 9876543211 | 5.5    | BE(CSE)   | 31-DEC-19      |
-| 102     | Surya     | 28-DEC-92 | M      | bbb      | ccc   | Australia | 8763452983 | 5.9    | BSC(CS)   | 31-DEC-19      |
-
 ```
 * alter query
 ```sql
