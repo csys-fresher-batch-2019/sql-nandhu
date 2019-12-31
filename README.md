@@ -20,12 +20,11 @@ country varchar2(50)not null,
 mob_no number not null,
 height number ,
 education varchar2(30),
-
 constraint user_id_pk primary key(user_id),
 constraint gender_cq check(gender in ('M','F'))
 );
 ```
-*Query
+* Query
 ```sql
 
 insert into profiles(user_id,user_name,d_o_b,gender,religion,caste,country,mob_no,height,education)
