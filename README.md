@@ -106,10 +106,10 @@ constraint md_plan_id_fk foreign key(md_plan_id)references plan(plan_id)
 ```sql
 insert into membership_duration
 (member_id,md_user_id,md_plan_id)
-values(1001,101,1);
+values(1001,101,2);
 
-update  membership_duration set expiry_date=add_months((select registerd_date from profiles where user_id=101),12);
-
+update  membership_duration set expiry_date=add_months((select registerd_date from profiles where user_id=101),6);
+ 
 | MEMBER_ID | MD_USER_ID | MD_PLAN_ID | EXPIRY_DATE |
 |-----------|------------|------------|-------------|
 | 1001      | 101        | 2          | 30-JUN-20   |
