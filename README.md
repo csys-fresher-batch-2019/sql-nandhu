@@ -128,4 +128,17 @@ constraint user_1_id_fk foreign key(user_1_id)references profiles(user_id),
 constraint user_2_id_fk foreign key(user_2_id)references profiles(user_id),
 constraint status_cq check(status in ('accepted','rejected'))
 );
+
+insert into  request_status(user_1_id,user_2_id,status,request_starts_by)
+values(101,102,'rejected',101);
+
+insert into  request_status(user_1_id,user_2_id,status,request_starts_by)
+values(103,104,'accepted',104);
+
+select * from request_status;
+
+| USER_1_ID | USER_2_ID | STATUS   | REQUEST_STARTS_BY |
+|-----------|-----------|----------|-------------------|
+| 101       | 102       | rejected | 101               |
+| 103       | 104       | accepted | 104               |
 ```
