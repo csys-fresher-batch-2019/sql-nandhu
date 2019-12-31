@@ -49,14 +49,27 @@ registerd_date date default sysdate);
 ```sql
 create table plan(
 plan_id number,
-user_id number,
 membership_type varchar2(20)not null,
-total_duration number not null,
+total_months number not null,
 constraint plan_id_pk primary key (plan_id),
-constraint user_id_fk foreign key (user_id)references profiles(user_id),
 constraint membership_type_cq check(membership_type in('platinum','gold','silver')),
-constraint total_duration_cq check(total_duration in (12,6,3))
+constraint total_months_cq check(total_months in (12,6,3))
 );
+
+* Query
+
+insert into plan(plan_id,membership_type,total_months)
+values(1,'platinum',12);
+
+insert into plan(plan_id,membership_type,total_months)
+values(2,'gold',6);
+
+
+insert into plan(plan_id,membership_type,total_months)
+values(3,'silver',3);
+
+select * from plan;
+
 
 ```
 ### Feature 3: Display the membership_duration details 
