@@ -72,5 +72,17 @@ constraint user_duration_id_fk foreign key(user_duration_id)references profiles(
 constraint plan_id_fk foreign key(plan_id)references plan(plan_id)
 );
 ```
+### Feature 3: Display the user_request_status details 
 
-
+```sql
+create table request_status
+(
+user_1_id  number,
+user_2_id number,
+status varchar2(20)not null,
+request_starts_by number(20)not null,
+constraint user_1_id_fk foreign key(user_1_id)references profiles(user_id),
+constraint user_2_id_fk foreign key(user_2_id)references profiles(user_id),
+constraint status_cq check(status in ('accepted','rejected'))
+);
+```
