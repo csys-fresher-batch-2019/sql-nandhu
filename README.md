@@ -34,6 +34,12 @@ values(101,'Shyloo',to_date('20-11-1994','dd-MM-yyyy'),'F','aaa','bbb','India',9
 insert into profiles(user_id,user_name,d_o_b,gender,religion,caste,country,mob_no,height,education)
 values(102,'Surya',to_date('28-12-1992','dd-MM-yyyy'),'M','bbb','ccc','Australia',8763452983,5.9,'BSC(CS)');
 
+insert into profiles(user_id,user_name,d_o_b,gender,religion,caste,country,mob_no,height,education)
+values(103,'riya',to_date('10-01-1995','dd-MM-yyyy'),'F','ccc','ddd','India',9654311654,5.2,'BSC(CS)');
+
+insert into profiles(user_id,user_name,d_o_b,gender,religion,caste,country,mob_no,height,education)
+values(104,'charan',to_date('22-02-1993','dd-MM-yyyy'),'M','bbb','ccc','India',8885555754,6.1,'MBA');
+
 select * from profiles;
 
 ```
