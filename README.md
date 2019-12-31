@@ -55,9 +55,9 @@ constraint plan_id_pk primary key (plan_id),
 constraint membership_type_cq check(membership_type in('platinum','gold','silver')),
 constraint total_months_cq check(total_months in (12,6,3))
 );
-
+```
 * Query
-
+```sql
 insert into plan(plan_id,membership_type,total_months)
 values(1,'platinum',12);
 
