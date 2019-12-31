@@ -17,5 +17,4 @@
 | 2       | gold            | 6            |
 | 3       | silver          | 3            |
 
-### Table 3: Display the membership_duration details
 
