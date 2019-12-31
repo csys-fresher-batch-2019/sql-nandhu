@@ -126,7 +126,7 @@ update  membership_duration set expiry_date=add_months((select registerd_date fr
 | 1003      | 103        | 3          | 31-MAR-20   |
 
 ```
-### Feature 3: Display the user_request_status details 
+### Feature 4: Display the user_request_status details 
 
 ```sql
 create table request_status
