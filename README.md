@@ -27,6 +27,9 @@ constraint gender_cq check(gender in ('M','F'))
 * Query
 ```sql
 
+alter table profiles add(
+registerd_date date default sysdate);
+
 insert into profiles(user_id,user_name,d_o_b,gender,religion,caste,country,mob_no,height,education)
 values(101,'Shyloo',to_date('20-11-1994','dd-MM-yyyy'),'F','aaa','bbb','India',9876543211,5.5,'BE(CSE)');
 
@@ -49,12 +52,6 @@ select * from profiles;
 | 103     | riya      | 10-JAN-95          | F      | ccc      | ddd   | India     | 9654311654 | 5.2    | BSC(CS)   | 31-DEC-19      |
 | 104     | Charan    | 22-FEB-93          | M      | bbb      | ccc   | India     | 8885555754 | 6.1    | MBA       | 31-DEC-19      |
 
-
-```
-* alter profiles
-```sql
-alter table profiles add(
-registerd_date date default sysdate);
 
 ```
 ### Feature 2: Display the membership_plan details 
