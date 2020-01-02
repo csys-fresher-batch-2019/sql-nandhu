@@ -166,29 +166,51 @@ select * from request_status;
 
 scenarios:
 ```sql
+* Dispaly total count of all users
+select count(*)as total_count from profiles;
 
-select count(*) from profiles;
-
+* Display the total count of bride
 select count(*)as bride_count from profiles where gender='F';
 
+* Display the total count of bridegroom
 select count(*)as bride_count from profiles where gender='M';
 
+* Display all the bride ist in ascending order
 select * from profiles where gender='F' order by user_name ;
 
-select * from profiles where gender='M' order by user_name ;
+* Display all the bridegroom ist in descending order
+select * from profiles where gender='M' order by user_name desc ;
 
+* Display all user name,education,occupation and their salary details
 select user_name,education,occupation,salary from profiles ;
 
+* List the bridegroom list with the specific occupation
 select * from profiles where gender='M' and occupation = 'Software Engineer';
 
+* list all the bridegroom having the salary greater than 30000/-
 select * from profiles where salary>30000 and gender='M';
 
+* list all the users their age and marital status
 select user_name,extract(year from sysdate)-extract(year from d_o_b)as Age,marital_sts from profiles;
 
+* list the user name with their registration date ,expiry date and the membership type
 select p.user_name,p.registerd_date,m.expiry_date,l.membership_type
 from profiles p,plan l,membership_duration m
 where p.user_id=m.md_user_id
 and l.plan_id=m.md_plan_id;
+
+* Display the user name and remaining days for the expiry date of the membership plan                           
+select user_name,
+(
+(select expiry_date from membership_duration where md_user_id=102)-
+(select registerd_date from profiles where user_id=102)
+)as remaining_days 
+from profiles where user_id=102; 
+
+* Extending the validity time after the membership has expired
+update membership_duration set expiry_date=add_months(expiry_date,12)
+where md_user_id=101; 
+
 
 ```
 
