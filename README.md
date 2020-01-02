@@ -63,35 +63,35 @@ select * from profiles;
 ### Feature 2: Display the membership_plan details 
 
 ```sql
+
 create table plan(
 plan_id number,
 membership_type varchar2(20)not null,
 total_months number not null,
+phone_no_count number not null,
+amount number not null,
 constraint plan_id_pk primary key (plan_id),
 constraint membership_type_cq check(membership_type in('platinum','gold','silver')),
 constraint total_months_cq check(total_months in (12,6,3))
 );
-```
-* Query
-```sql
-insert into plan(plan_id,membership_type,total_months)
-values(1,'platinum',12);
+
+insert into plan(plan_id,membership_type,total_months,phone_no_count,amount)
+values(1,'platinum',12,100,5000);
 
 insert into plan(plan_id,membership_type,total_months)
-values(2,'gold',6);
+values(2,'gold',6,60,3000);
 
 
 insert into plan(plan_id,membership_type,total_months)
-values(3,'silver',3);
+values(3,'silver',3,40,2000);
 
 select * from plan;
 
-| PLAN_ID | MEMBERSHIP_TYPE | TOTAL_MONTHS |
-|---------|-----------------|--------------|
-| 1       | platinum        | 12           |
-| 2       | gold            | 6            |
-| 3       | silver          | 3            |
-
+| PLAN_ID | MEMBERSHIP_TYPE | TOTAL_MONTHS | PHONE_NO_COUNT | AMOUNT |
+|---------|-----------------|--------------|----------------|--------|
+| 1       | platinum        | 12           | 100            | 5000   |
+| 2       | gold            | 6            | 60             | 3000   |
+| 3       | silver          | 3            | 40             | 2000   |
 
 ```
 ### Feature 3: Display the membership_duration details 
@@ -170,6 +170,11 @@ select * from request_status;
 * Dispaly total count of all users
 ```sql
 select count(*)as total_count from profiles;
+
+| TOTAL_COUNT |
+|-------------|
+| 4           |
+
 ```
 * Display the total count of bride
 ```sql
