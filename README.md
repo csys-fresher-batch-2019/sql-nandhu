@@ -278,7 +278,7 @@ from profiles where user_id=102;
 | USER_NAME | REMAINING_DAYS |
 |-----------|----------------|
 | Surya     | 182            |
-
+```
 * Extending the validity time after the membership has expired
 ```sql
 update membership_duration set expiry_date=add_months(expiry_date,12)
