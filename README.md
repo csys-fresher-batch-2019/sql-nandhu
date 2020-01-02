@@ -164,7 +164,8 @@ select * from request_status;
 | 104         | 103       | accepted | 103               |
 ```
 
-scenarios:
+# Use cases:
+
 ```sql
 * Dispaly total count of all users
 select count(*)as total_count from profiles;
