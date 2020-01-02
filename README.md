@@ -154,8 +154,34 @@ values(103,104,'accepted',104);
 
 select * from request_status;
 
-| USER_1_ID | USER_2_ID | STATUS   | REQUEST_STARTS_BY |
-|-----------|-----------|----------|-------------------|
-| 101       | 102       | rejected | 101               |
-| 103       | 104       | accepted | 104               |
+| USER_1_ID   | USER_2_ID | STATUS   | REQUEST_STARTS_BY |
+|-------------|-----------|----------|-------------------|
+| 101         | 102       | rejected | 101               |
+| 103         | 104       | accepted | 104               |
+| 101         | 104       | rejected | 101               |
+| 103         | 102       | accepted | 103               |
+| 104         | 101       | rejected | 101               |
+| 104         | 103       | accepted | 103               |
 ```
+
+scenarios:
+```sql
+select * from profiles where gender='F' order by user_name ;
+
+
+select * from profiles where gender='M' order by user_name ;
+
+select user_name,education,occupation,salary from profiles ;
+
+select * from profiles where gender='M' and occupation = 'Software Engineer';
+
+select user_name,extract(year from sysdate)-extract(year from d_o_b)as Age,marital_sts from profiles;
+
+select p.user_name,p.registerd_date,m.expiry_date,l.membership_type
+from profiles p,plan l,membership_duration m
+where p.user_id=m.md_user_id
+and l.plan_id=m.md_plan_id;
+
+```
+
+
