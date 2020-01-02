@@ -166,14 +166,22 @@ select * from request_status;
 
 scenarios:
 ```sql
-select * from profiles where gender='F' order by user_name ;
 
+select count(*) from profiles;
+
+select count(*)as bride_count from profiles where gender='F';
+
+select count(*)as bride_count from profiles where gender='M';
+
+select * from profiles where gender='F' order by user_name ;
 
 select * from profiles where gender='M' order by user_name ;
 
 select user_name,education,occupation,salary from profiles ;
 
 select * from profiles where gender='M' and occupation = 'Software Engineer';
+
+select * from profiles where salary>30000 and gender='M';
 
 select user_name,extract(year from sysdate)-extract(year from d_o_b)as Age,marital_sts from profiles;
 
