@@ -38,7 +38,6 @@ constraint marital_sts_cq check(marital_sts in ('unmarried','widow','widower','d
 insert into profiles(user_id,user_name,d_o_b,gender,religion,caste,country,mob_no,height,education,occupation,salary,marital_sts)
 values(101,'Shyloo',to_date('20-11-1994','dd-MM-yyyy'),'F','aaa','bbb','India',9876543211,5.5,'BE(CSE)','professor',30000,'unmarried');
 
-
 insert into profiles(user_id,user_name,d_o_b,gender,religion,caste,country,mob_no,height,education,occupation,salary,marital_sts)
 values(102,'Surya',to_date('28-12-1992','dd-MM-yyyy'),'M','bbb','ccc','Australia',8763452983,5.9,'BSC(CS)','Software Engineer','35000','divorced');
 
@@ -81,7 +80,6 @@ values(1,'platinum',12,100,5000);
 insert into plan(plan_id,membership_type,total_months)
 values(2,'gold',6,60,3000);
 
-
 insert into plan(plan_id,membership_type,total_months)
 values(3,'silver',3,40,2000);
 
@@ -121,15 +119,16 @@ values(1002,102,2);
 (member_id,md_user_id,md_plan_id)
 values(1003,103,3);
 
-update  membership_duration set expiry_date=add_months((select registerd_date from profiles where user_id=101),12)where md_user_id=101 ;
-update  membership_duration set expiry_date=add_months((select registerd_date from profiles where user_id=102),6)where md_user_id=102 ;
-update  membership_duration set expiry_date=add_months((select registerd_date from profiles where user_id=103),3)where md_user_id=103;
+update  membership_duration set expiry_date=add_months((select registerd_date from profiles where user_id=101),12)where md_user_id=101 and md_plan_id=1 ;
+update  membership_duration set expiry_date=add_months((select registerd_date from profiles where user_id=102),6)where md_user_id=102 and md_plan_id=2 ;
+update  membership_duration set expiry_date=add_months((select registerd_date from profiles where user_id=103),3)where md_user_id=103 and md_plan_id=3;
+
 
 | MEMBER_ID | MD_USER_ID | MD_PLAN_ID | EXPIRY_DATE |
 |-----------|------------|------------|-------------|
-| 1001      | 101        | 1          | 31-DEC-20   |
-| 1002      | 102        | 2          | 30-JUN-20   |
-| 1003      | 103        | 3          | 31-MAR-20   |
+| 1001      | 101        | 1          | 02-JAN-21   |
+| 1002      | 102        | 2          | 02-JUL-20   |
+| 1003      | 103        | 3          | 02-APR-20   |
 
 ```
 ### Feature 4: Display the user_request_status details 
