@@ -166,41 +166,52 @@ select * from request_status;
 
 # Use cases:
 
-```sql
+
 * Dispaly total count of all users
+```sql
 select count(*)as total_count from profiles;
-
+```
 * Display the total count of bride
+```sql
 select count(*)as bride_count from profiles where gender='F';
-
+```
 * Display the total count of bridegroom
+```sql
 select count(*)as bride_count from profiles where gender='M';
-
+```
 * Display all the bride ist in ascending order
+```sql
 select * from profiles where gender='F' order by user_name ;
-
+```
 * Display all the bridegroom ist in descending order
+```sql
 select * from profiles where gender='M' order by user_name desc ;
-
+```
 * Display all user name,education,occupation and their salary details
+```sql
 select user_name,education,occupation,salary from profiles ;
-
+```
 * List the bridegroom list with the specific occupation
+```sql
 select * from profiles where gender='M' and occupation = 'Software Engineer';
-
+```
 * list all the bridegroom having the salary greater than 30000/-
+```sql
 select * from profiles where salary>30000 and gender='M';
-
+```
 * list all the users their age and marital status
+```sql
 select user_name,extract(year from sysdate)-extract(year from d_o_b)as Age,marital_sts from profiles;
-
+```
 * list the user name with their registration date ,expiry date and the membership type
+```sql
 select p.user_name,p.registerd_date,m.expiry_date,l.membership_type
 from profiles p,plan l,membership_duration m
 where p.user_id=m.md_user_id
 and l.plan_id=m.md_plan_id;
-
-* Display the user name and remaining days for the expiry date of the membership plan                           
+```
+* Display the user name and remaining days for the expiry date of the membership plan  
+```sql
 select user_name,
 (
 (select expiry_date from membership_duration where md_user_id=102)-
