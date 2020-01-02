@@ -191,7 +191,7 @@ select count(*)as bridegroom_count from profiles where gender='M';
 | 2                |
 
 ```
-* Display all the bride ist in ascending order
+* Display all the bride ist 
 ```sql
 select * from profiles where gender='F';
 
@@ -201,9 +201,26 @@ select * from profiles where gender='F';
 | 103     | riya      | 10-JAN-95 | F      | ccc      | ddd   | India   | 9654311654 | 5.2    | BSC(CS)   | 02-JAN-20      | widow       |  -         |  -     |
 
 ```
-* Display all the bridegroom ist in descending order
+* Display all the bridegroom ist
 ```sql
 select * from profiles where gender='M';
+
+| USER_ID | USER_NAME | D_O_B     | GENDER | RELIGION | CASTE | COUNTRY   | MOB_NO     | HEIGHT | EDUCATION | REGISTERD_DATE | MARITAL_STS | OCCUPATION        | SALARY |
+|---------|-----------|-----------|--------|----------|-------|-----------|------------|--------|-----------|----------------|-------------|-------------------|--------|
+| 102     | Surya     | 28-DEC-92 | M      | bbb      | ccc   | Australia | 8763452983 | 5.9    | BSC(CS)   | 02-JAN-20      | divorced    | Software Engineer | 35000  |
+| 104     | charan    | 22-FEB-93 | M      | bbb      | ccc   | India     | 8885555754 | 6.1    | MBA       | 02-JAN-20      | unmarried   | HR                | 45000  |
+```
+* List all bride with height specification
+```sql
+select * from profiles where height >=5.5 and gender='F';
+
+| USER_ID | USER_NAME | D_O_B     | GENDER | RELIGION | CASTE | COUNTRY | MOB_NO     | HEIGHT | EDUCATION | REGISTERD_DATE | MARITAL_STS | OCCUPATION | SALARY |
+|---------|-----------|-----------|--------|----------|-------|---------|------------|--------|-----------|----------------|-------------|------------|--------|
+| 101     | Shyloo    | 20-NOV-94 | F      | aaa      | bbb   | India   | 9876543211 | 5.5    | BE(CSE)   | 02-JAN-20      | unmarried   | professor  | 30000  |
+```
+* List all bridegroom with height specification
+```sql
+select * from profiles where height >=5.5 and gender='M';
 
 | USER_ID | USER_NAME | D_O_B     | GENDER | RELIGION | CASTE | COUNTRY   | MOB_NO     | HEIGHT | EDUCATION | REGISTERD_DATE | MARITAL_STS | OCCUPATION        | SALARY |
 |---------|-----------|-----------|--------|----------|-------|-----------|------------|--------|-----------|----------------|-------------|-------------------|--------|
