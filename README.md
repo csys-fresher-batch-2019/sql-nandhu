@@ -191,7 +191,7 @@ select count(*)as bridegroom_count from profiles where gender='M';
 | 2                |
 
 ```
-* Display all the bride ist 
+* Display all the bride list 
 ```sql
 select * from profiles where gender='F';
 
@@ -201,7 +201,7 @@ select * from profiles where gender='F';
 | 103     | riya      | 10-JAN-95 | F      | ccc      | ddd   | India   | 9654311654 | 5.2    | BSC(CS)   | 02-JAN-20      | widow       |  -         |  -     |
 
 ```
-* Display all the bridegroom ist
+* Display all the bridegroom list
 ```sql
 select * from profiles where gender='M';
 
@@ -227,7 +227,7 @@ select * from profiles where height >=5.5 and gender='M';
 | 102     | Surya     | 28-DEC-92 | M      | bbb      | ccc   | Australia | 8763452983 | 5.9    | BSC(CS)   | 02-JAN-20      | divorced    | Software Engineer | 35000  |
 | 104     | charan    | 22-FEB-93 | M      | bbb      | ccc   | India     | 8885555754 | 6.1    | MBA       | 02-JAN-20      | unmarried   | HR                | 45000  |
 ```
-* Display all user name,education,occupation and their salary details
+* Display all users name,education,occupation and their salary details
 ```sql
 select user_name,education,occupation,salary from profiles ;
 
@@ -257,7 +257,7 @@ select * from profiles where salary>30000 and gender='M';
 | 102     | Surya     | 28-DEC-92 | M      | bbb      | ccc   | Australia | 8763452983 | 5.9    | BSC(CS)   | 02-JAN-20      | divorced    | Software Engineer | 35000  |
 | 104     | charan    | 22-FEB-93 | M      | bbb      | ccc   | India     | 8885555754 | 6.1    | MBA       | 02-JAN-20      | unmarried   | HR                | 45000  |
 ```
-* list all the users their age and marital status
+* list all the users with their age and marital status
 ```sql
 select user_name,extract(year from sysdate)-extract(year from d_o_b)as Age,marital_sts from profiles;
 
