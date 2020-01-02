@@ -179,34 +179,79 @@ select count(*)as total_count from profiles;
 * Display the total count of bride
 ```sql
 select count(*)as bride_count from profiles where gender='F';
+
+| BRIDE_COUNT |
+|-------------|
+| 2           |
 ```
 * Display the total count of bridegroom
 ```sql
-select count(*)as bride_count from profiles where gender='M';
+select count(*)as bridegroom_count from profiles where gender='M';
+
+| BRIDEGROOM_COUNT |
+|------------------|
+| 2                |
+
 ```
 * Display all the bride ist in ascending order
 ```sql
-select * from profiles where gender='F' order by user_name ;
+select * from profiles where gender='F';
+
+| USER_ID | USER_NAME | D_O_B     | GENDER | RELIGION | CASTE | COUNTRY | MOB_NO     | HEIGHT | EDUCATION | REGISTERD_DATE | MARITAL_STS | OCCUPATION | SALARY |
+|---------|-----------|-----------|--------|----------|-------|---------|------------|--------|-----------|----------------|-------------|------------|--------|
+| 101     | Shyloo    | 20-NOV-94 | F      | aaa      | bbb   | India   | 9876543211 | 5.5    | BE(CSE)   | 02-JAN-20      | unmarried   | professor  | 30000  |
+| 103     | riya      | 10-JAN-95 | F      | ccc      | ddd   | India   | 9654311654 | 5.2    | BSC(CS)   | 02-JAN-20      | widow       |  -         |  -     |
+
 ```
 * Display all the bridegroom ist in descending order
 ```sql
-select * from profiles where gender='M' order by user_name desc ;
+select * from profiles where gender='M';
+
+| USER_ID | USER_NAME | D_O_B     | GENDER | RELIGION | CASTE | COUNTRY   | MOB_NO     | HEIGHT | EDUCATION | REGISTERD_DATE | MARITAL_STS | OCCUPATION        | SALARY |
+|---------|-----------|-----------|--------|----------|-------|-----------|------------|--------|-----------|----------------|-------------|-------------------|--------|
+| 102     | Surya     | 28-DEC-92 | M      | bbb      | ccc   | Australia | 8763452983 | 5.9    | BSC(CS)   | 02-JAN-20      | divorced    | Software Engineer | 35000  |
+| 104     | charan    | 22-FEB-93 | M      | bbb      | ccc   | India     | 8885555754 | 6.1    | MBA       | 02-JAN-20      | unmarried   | HR                | 45000  |
 ```
 * Display all user name,education,occupation and their salary details
 ```sql
 select user_name,education,occupation,salary from profiles ;
+
+| USER_NAME | EDUCATION | OCCUPATION        | SALARY |
+|-----------|-----------|-------------------|--------|
+| Shyloo    | BE(CSE)   | professor         | 30000  |
+| Surya     | BSC(CS)   | Software Engineer | 35000  |
+| riya      | BSC(CS)   |  -                |  -     |
+| charan    | MBA       | HR                | 45000  |
+
 ```
 * List the bridegroom list with the specific occupation
 ```sql
 select * from profiles where gender='M' and occupation = 'Software Engineer';
+
+| USER_ID | USER_NAME | D_O_B     | GENDER | RELIGION | CASTE | COUNTRY   | MOB_NO     | HEIGHT | EDUCATION | REGISTERD_DATE | MARITAL_STS | OCCUPATION        | SALARY |
+|---------|-----------|-----------|--------|----------|-------|-----------|------------|--------|-----------|----------------|-------------|-------------------|--------|
+| 102     | Surya     | 28-DEC-92 | M      | bbb      | ccc   | Australia | 8763452983 | 5.9    | BSC(CS)   | 02-JAN-20      | divorced    | Software Engineer | 35000  |
+|         |           |           |        |          |       |           |            |        |           |                |             |                   |        |
 ```
 * list all the bridegroom having the salary greater than 30000/-
 ```sql
 select * from profiles where salary>30000 and gender='M';
+
+| USER_ID | USER_NAME | D_O_B     | GENDER | RELIGION | CASTE | COUNTRY   | MOB_NO     | HEIGHT | EDUCATION | REGISTERD_DATE | MARITAL_STS | OCCUPATION        | SALARY |
+|---------|-----------|-----------|--------|----------|-------|-----------|------------|--------|-----------|----------------|-------------|-------------------|--------|
+| 102     | Surya     | 28-DEC-92 | M      | bbb      | ccc   | Australia | 8763452983 | 5.9    | BSC(CS)   | 02-JAN-20      | divorced    | Software Engineer | 35000  |
+| 104     | charan    | 22-FEB-93 | M      | bbb      | ccc   | India     | 8885555754 | 6.1    | MBA       | 02-JAN-20      | unmarried   | HR                | 45000  |
 ```
 * list all the users their age and marital status
 ```sql
 select user_name,extract(year from sysdate)-extract(year from d_o_b)as Age,marital_sts from profiles;
+
+| USER_NAME | AGE | MARITAL_STS |
+|-----------|-----|-------------|
+| Shyloo    | 26  | unmarried   |
+| Surya     | 28  | divorced    |
+| riya      | 25  | widow       |
+| charan    | 27  | unmarried   |
 ```
 * list the user name with their registration date ,expiry date and the membership type
 ```sql
@@ -214,6 +259,13 @@ select p.user_name,p.registerd_date,m.expiry_date,l.membership_type
 from profiles p,plan l,membership_duration m
 where p.user_id=m.md_user_id
 and l.plan_id=m.md_plan_id;
+
+| USER_NAME | REGISTERD_DATE | EXPIRY_DATE | MEMBERSHIP_TYPE |
+|-----------|----------------|-------------|-----------------|
+| Shyloo    | 02-JAN-20      | 02-JAN-21   | platinum        |
+| Surya     | 02-JAN-20      | 02-JUL-20   | gold            |
+| riya      | 02-JAN-20      | 02-APR-20   | silver          |
+
 ```
 * Display the user name and remaining days for the expiry date of the membership plan  
 ```sql
@@ -224,10 +276,22 @@ select user_name,
 )as remaining_days 
 from profiles where user_id=102; 
 
+| USER_NAME | REMAINING_DAYS |
+|-----------|----------------|
+| Surya     | 182            |
+
 * Extending the validity time after the membership has expired
+```sql
 update membership_duration set expiry_date=add_months(expiry_date,12)
 where md_user_id=101; 
 
+select * from membership_duration;
+
+| MEMBER_ID | MD_USER_ID | MD_PLAN_ID | EXPIRY_DATE |
+|-----------|------------|------------|-------------|
+| 1001      | 101        | 1          | 02-JAN-22   |
+| 1002      | 102        | 2          | 02-JUL-20   |
+| 1003      | 103        | 3          | 02-APR-20   |
 
 ```
 
