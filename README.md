@@ -28,29 +28,35 @@ constraint gender_cq check(gender in ('M','F'))
 ```sql
 
 alter table profiles add(
-registerd_date date default sysdate);
+registerd_date date default sysdate,
+marital_sts varchar2(20)not null,
+occupation varchar2(20),
+salary number,
+constraint marital_sts_cq check(marital_sts in ('unmarried','widow','widower','divorced'))
+);
 
-insert into profiles(user_id,user_name,d_o_b,gender,religion,caste,country,mob_no,height,education)
-values(101,'Shyloo',to_date('20-11-1994','dd-MM-yyyy'),'F','aaa','bbb','India',9876543211,5.5,'BE(CSE)');
+insert into profiles(user_id,user_name,d_o_b,gender,religion,caste,country,mob_no,height,education,occupation,salary,marital_sts)
+values(101,'Shyloo',to_date('20-11-1994','dd-MM-yyyy'),'F','aaa','bbb','India',9876543211,5.5,'BE(CSE)','professor',30000,'unmarried');
 
 
-insert into profiles(user_id,user_name,d_o_b,gender,religion,caste,country,mob_no,height,education)
-values(102,'Surya',to_date('28-12-1992','dd-MM-yyyy'),'M','bbb','ccc','Australia',8763452983,5.9,'BSC(CS)');
+insert into profiles(user_id,user_name,d_o_b,gender,religion,caste,country,mob_no,height,education,occupation,salary,marital_sts)
+values(102,'Surya',to_date('28-12-1992','dd-MM-yyyy'),'M','bbb','ccc','Australia',8763452983,5.9,'BSC(CS)','Software Engineer','35000','divorced');
 
-insert into profiles(user_id,user_name,d_o_b,gender,religion,caste,country,mob_no,height,education)
-values(103,'riya',to_date('10-01-1995','dd-MM-yyyy'),'F','ccc','ddd','India',9654311654,5.2,'BSC(CS)');
+insert into profiles(user_id,user_name,d_o_b,gender,religion,caste,country,mob_no,height,education,marital_sts)
+values(103,'riya',to_date('10-01-1995','dd-MM-yyyy'),'F','ccc','ddd','India',9654311654,5.2,'BSC(CS)','widow');
 
-insert into profiles(user_id,user_name,d_o_b,gender,religion,caste,country,mob_no,height,education)
-values(104,'charan',to_date('22-02-1993','dd-MM-yyyy'),'M','bbb','ccc','India',8885555754,6.1,'MBA');
+insert into profiles(user_id,user_name,d_o_b,gender,religion,caste,country,mob_no,height,education,occupation,salary,marital_sts)
+values(104,'charan',to_date('22-02-1993','dd-MM-yyyy'),'M','bbb','ccc','India',8885555754,6.1,'MBA','HR',45000,'unmarried');
+
 
 select * from profiles;
 
-| USER_ID | USER_NAME | D_O_B              | GENDER | RELIGION | CASTE | COUNTRY   | MOB_NO     | HEIGHT | EDUCATION | REGISTERD_DATE |
-|---------|-----------|--------------------|--------|----------|-------|-----------|------------|--------|-----------|----------------|
-| 101     | Shyloo    | 20-NOV-94          | F      | aaa      | bbb   | India     | 9876543211 | 5.5    | BE(CSE)   | 31-DEC-19      |
-| 102     | Surya     | 28-DEC-92          | M      | bbb      | ccc   | Australia | 8763452983 | 5.9    | BSC(CS)   | 31-DEC-19      |
-| 103     | riya      | 10-JAN-95          | F      | ccc      | ddd   | India     | 9654311654 | 5.2    | BSC(CS)   | 31-DEC-19      |
-| 104     | Charan    | 22-FEB-93          | M      | bbb      | ccc   | India     | 8885555754 | 6.1    | MBA       | 31-DEC-19      |
+| USER_ID | USER_NAME | D_O_B     | GENDER | RELIGION | CASTE | COUNTRY   | MOB_NO     | HEIGHT | EDUCATION | REGISTERD_DATE | MARITAL_STS | OCCUPATION        | SALARY |
+|---------|-----------|-----------|--------|----------|-------|-----------|------------|--------|-----------|----------------|-------------|-------------------|--------|
+| 101     | Shyloo    | 20-NOV-94 | F      | aaa      | bbb   | India     | 9876543211 | 5.5    | BE(CSE)   | 02-JAN-20      | unmarried   | professor         | 30000  |
+| 102     | Surya     | 28-DEC-92 | M      | bbb      | ccc   | Australia | 8763452983 | 5.9    | BSC(CS)   | 02-JAN-20      | divorced    | Software Engineer | 35000  |
+| 104     | charan    | 22-FEB-93 | M      | bbb      | ccc   | India     | 8885555754 | 6.1    | MBA       | 02-JAN-20      | unmarried   | HR                | 45000  |
+| 103     | riya      | 10-JAN-95 | F      | ccc      | ddd   | India     | 9654311654 | 5.2    | BSC(CS)   | 02-JAN-20      | widow       |  -                |  -     |
 
 
 ```
