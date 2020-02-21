@@ -42,8 +42,6 @@ constraint mail_id_uq unique(mail_id),
 constraint user_name_mob_no_uq unique(user_name,mob_no)
 );
 alter table profiles add(pic varchar2(50));
-```
-* Query
 
 select * from profiles;
 | USER_ID | USER_NAME | D_O_B    | GENDER | RELIGION | CASTE | COUNTRY | STATE     | CITY    | MOB_NO     | AADHAR_NO    | MAIL_ID          | HEIGHT | EDUCATION | REGISTERED_DATE | MARITAL_STS | OCCUPATION | SALARY | MEMBERSHIP_TYPE | PASS    | ACTIVE | PIC        |
@@ -261,5 +259,21 @@ select * from membership_duration;
 | 1003      | 103        | 3          | 02-APR-20   |
 
 ```
+* Display the Requestor List
+```sql
+select * from request where acceptor='adharva@gmail.com';
 
+| REQUESTOR       | ACCEPTOR          | STATUS  |
+|-----------------|-------------------|---------|
+| sound@gmail.com | adharva@gmail.com | pending |
+| ramo@gmail.com  | adharva@gmail.com | pending |
+```
+* Display the Acceptor List
+```sql
+select * from request where requestor='charan@gmail.com';
 
+| REQUESTOR        | ACCEPTOR         | STATUS   |
+|------------------|------------------|----------|
+| charan@gmail.com | sound@gmail.com  | rejected |
+| charan@gmail.com | shyloo@gmail.com | pending  |
+```
