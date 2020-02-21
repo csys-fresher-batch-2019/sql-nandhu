@@ -77,6 +77,7 @@ select * from plan;
 ### Feature 3: Display the membership_duration details 
 
 ```sql
+create sequence memb_id_sq start with 1000 increment by 1;
 create table membership_duration(
 member_id number,
 md_user_id number,
