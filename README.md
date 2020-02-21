@@ -277,3 +277,12 @@ select * from request where requestor='charan@gmail.com';
 | charan@gmail.com | sound@gmail.com  | rejected |
 | charan@gmail.com | shyloo@gmail.com | pending  |
 ```
+* Update the Request_Status
+```sql
+update request set status='accepted' where requestor='charan@gmail.com' and acceptor='shyloo@gmail.com';
+
+| REQUESTOR        | ACCEPTOR         | STATUS   |
+|------------------|------------------|----------|
+| charan@gmail.com | shyloo@gmail.com | accepted |
+
+```
